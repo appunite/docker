@@ -1,8 +1,10 @@
 # android-java7
 
 This docker is to build Android Gradle project with Java 7.
+It is available on Docker Hub https://registry.hub.docker.com/u/jacekmarchwicki/android/ .
 
 Contains:
+
 * Android SDK: r24.0.2
 * Build tools: 21.1.2
 * Android API: 21
