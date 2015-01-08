@@ -1,4 +1,4 @@
-# android-java7
+# jenkins
 
 This docker is to build jenkins for git CI with docker integration.
 It is available on Docker Hub https://registry.hub.docker.com/u/jacekmarchwicki/jenkins/ .
