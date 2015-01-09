@@ -29,23 +29,35 @@ Create shared jenkins
 docker run --volume /jenkins --name jenkins-data busybox true
 ```
 
-Run jenkins
+Run jenkins and docker
 
 ```bash
-docker run --volumes-from jenkins-data --publish 8080:8080 --rm jacekmarchwicki/jenkins
+docker run --volumes-from jenkins-data \
+  --publish 8080:8080 \
+  --privileged \
+  --rm jacekmarchwicki/jenkins \
+  run.sh
 ```
 
 ### Debug
 To look on `/jenkins` directory you can run ubuntu docker in interactive mode
 
 ```bash
-docker run --tty --interactive --rm --volumes-from jenkins-data ubuntu:12.04 /bin/bash
+docker run --interactive \
+  --tty \
+  --volumes-from jenkins-data \
+  --publish 8080:8080 \
+  --privileged \
+  --rm \
+  jacekmarchwicki/jenkins \
+  /bin/bash
 ```
 
 ### Backup
 
 ```bash
-docker run --volumes-from jenkins-data \
+docker run \
+  --volumes-from jenkins-data \
   --volume=$(pwd):/backup \
   ubuntu:12.04 \
   tar cvf /backup/backup_$(date +"%Y-%d-%m_%H%M%S").tar /jenkins
@@ -64,8 +76,10 @@ docker run --volumes-from jenkins-data2 \
   tar xvf /backup/backup.tar
 docker run --volumes-from jenkins-data2 \
   --publish 8081:8080 \
+  --privileged \
   --rm \
-  jacekmarchwicki/jenkins
+  jacekmarchwicki/jenkins \
+  run.sh
 ```
 
 Now your restored jenkins should be visible on port `8081`.
@@ -74,4 +88,19 @@ You can remove your restored volume by
 
 ```bash
 docker rm jenkins-data2
+```
+
+## Running build inside jenkins docker
+Add to your build script
+```bash
+# Test connection to docker
+docker version || exit 1
+
+cat > script.sh << EOF
+#!/bin/bash
+./gradlew build
+EOF
+chmod u+x script.sh  || exit 1
+
+docker run --interactive --volume=$(pwd):/opt/workspace --workdir=/opt/workspace --rm jacekmarchwicki/android-test "/opt/workspace/script.sh" || exit 1
 ```
