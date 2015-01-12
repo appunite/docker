@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker -d &
+service docker start
 java -jar /opt/jenkins.war $@
