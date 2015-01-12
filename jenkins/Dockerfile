@@ -9,8 +9,8 @@ RUN mkdir -p /opt && cd /opt/ && wget https://dl.google.com/dl/cloudsdk/release/
 ENV PATH /opt/google-cloud-sdk/bin:$PATH
 RUN yes | gcloud components update
 
-ENV CLOUDSDK_CONFIG=/jenkins/gcloud
-ENV CLOUDSDK_PYTHON_SITEPACKAGES=1
+ENV CLOUDSDK_CONFIG /jenkins/gcloud
+ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
 
 ADD http://mirrors.jenkins-ci.org/war/1.596/jenkins.war /opt/jenkins.war
 RUN chmod 644 /opt/jenkins.war
