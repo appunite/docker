@@ -9,7 +9,7 @@ It is available on Docker Hub https://registry.hub.docker.com/u/jacekmarchwicki/
 docker build --tag jacekmarchwicki/jenkins .
 ```
 
-If building fail you can debug via where `1b372b1f76f2` is partial build
+If building fail you can debug (where `1b372b1f76f2` is partial build) via:
 
 ```bash
 docker run --tty --interactive --rm 1b372b1f76f2 /bin/bash
@@ -23,16 +23,39 @@ docker push jacekmarchwicki/jenkins
 
 ## Usage
 
-Create shared jenkins
+### Create shared jenkins
 
 ```bash
 docker run --volume /jenkins --name jenkins-data busybox true
 ```
 
-Run jenkins and docker
+### Setup google cloud storage login (optional)
+* Go to [Google cloud console](https://console.developers.google.com/)
+* Open your project
+* Go to APIs & auth
+* Go to Credentails
+* Generate Create new Client ID
+* Choose Service Account
+* Download p12 key
+* Run command:
 
 ```bash
 docker run --volumes-from jenkins-data \
+  --volume <your-key>:/tmp/your-key.p12 \
+  --tty \
+  --interactive \
+  --publish 8080:8080 \
+  --privileged \
+  --rm jacekmarchwicki/jenkins \
+  gcloud auth activate-service-account <your-service-account-email> --key-file /tmp/your-key.p12 --project <your-project-id>
+```
+
+### Run jenkins and docker
+
+```bash
+docker run --volumes-from jenkins-data \
+  --tty \
+  --interactive \
   --publish 8080:8080 \
   --privileged \
   --rm jacekmarchwicki/jenkins \
@@ -57,6 +80,8 @@ docker run --interactive \
 
 ```bash
 docker run \
+  --tty \
+  --interactive \
   --volumes-from jenkins-data \
   --volume=$(pwd):/backup \
   ubuntu:12.04 \
@@ -67,14 +92,20 @@ docker run \
 
 ```bash
 docker run --volume /jenkins \
+  --tty \
+  --interactive \
   --name jenkins-data2 \
   busybox \
   true
 docker run --volumes-from jenkins-data2 \
+  --tty \
+  --interactive \
   --volume=$(pwd):/backup \
   busybox \
   tar xvf /backup/backup.tar
 docker run --volumes-from jenkins-data2 \
+  --tty \
+  --interactive \
   --publish 8081:8080 \
   --privileged \
   --rm \
@@ -92,9 +123,13 @@ docker rm jenkins-data2
 
 ## Running build inside jenkins docker
 Add to your build script
+
 ```bash
 # Test connection to docker
 docker version || exit 1
+
+# Copy your keystore
+gsutil cp gs://<your-private-bucket>/keystores/your-key.keystore Yapert/your-key.keystore || exit 1
 
 cat > script.sh << EOF
 #!/bin/bash
