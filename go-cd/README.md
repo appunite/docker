@@ -10,10 +10,10 @@ docker build --tag appunite/go-cd:14.4.0 .
 
 ```bash
 docker run \
-			-v /go/etc:/etc/go \
-			-v /go/data:/data/artifacts \
-			-v /go/var:/var/go \
-			-v /go/lib:/var/lib/ldap \
+			-v /etc/go \
+			-v /data/artifacts \
+			-v /var/go \
+			-v /var/lib/ldap \
 			--name go-cd-data busybox true
 ```
 
@@ -25,15 +25,23 @@ docker run -v /go/ldap:/var/lib/ldap \
 			-e LDAP_DOMAIN="appunite.com" \
 			-e LDAP_DC="dc=appunite,dc=com" \
 			--volumes-from go-cd-data \
-			-p 8153:8153 -d  \
-			-p 8154:8154 -d  \
+			-p 127.0.0.1:8153:8153  \
+			-p 127.0.0.1:8154:8154 -d  \
+			--name go-ci \
 			appunite/go-cd:14.4.0
 ```			
+
+### Logging in
+
+By default we enabled authentication, default user:
+Login: admin
+Password: password
+
 	
 ## TTY
 
 ```bash
-docker run -v /go/ldap:/var/lib/ldap \
+docker run \
 			-e LDAP_ORGANISATION="AppUnite Sp. z o.o." \
 			-e LDAP_DOMAIN="appunite.com" \
 			-e LDAP_DC="dc=appunite,dc=com" \
@@ -75,4 +83,25 @@ server {
 }
 ```
 
+## Backup
+
+```bash
+docker run \
+  --tty \
+  --interactive \
+  --volumes-from go-cd-data \
+  --volume=$(pwd):/backup \
+  ubuntu:14.04 \
+  tar zcvf /backup/go-cd_backup_$(date +"%Y-%d-%m_%H%M%S").tar.gz /etc/go /data/artifacts /var/go /var/lib/ldap
+```
 			
+## Restore
+
+```bash
+docker run --volumes-from go-cd-data2 \
+  --tty \
+  --interactive \
+  --volume=$(pwd):/backup \
+  ubuntu:14.04 \
+  tar -zxvf /backup/go-cd_backup_2015-13-01_120433.tar
+```

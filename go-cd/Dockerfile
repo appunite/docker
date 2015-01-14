@@ -14,7 +14,7 @@ EXPOSE 8154
 
 # OpenLDAP configuration
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get -y update && apt-get -y install slapd ldap-utils
+RUN apt-get -y update && apt-get -y install slapd ldap-utils && apt-get clean
 EXPOSE 389
 VOLUME /var/lib/ldap
 

@@ -9,7 +9,7 @@
     Copyright [2015]
     
 		Contributors:
-		 * Jacek Marchiwcki  <jacek.marchwicki@gmail.com>
+		 * Jacek Marchwicki  <jacek.marchwicki@gmail.com>
 		 * Karol Wojtaszek <karol@appunite.com>
 		
     Licensed under the Apache License, Version 2.0 (the "License");
