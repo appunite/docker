@@ -85,7 +85,7 @@ docker run \
   --volumes-from jenkins-data \
   --volume=$(pwd):/backup \
   ubuntu:12.04 \
-  tar cvf /backup/backup_$(date +"%Y-%d-%m_%H%M%S").tar /jenkins
+  tar --exclude='/jenkins/jobs/*/workspace/*' -zcvf /backup/jenkins_backup_$(date +"%Y-%d-%m_%H%M%S").tar.gz /jenkins
 ```
 
 ### Restore
