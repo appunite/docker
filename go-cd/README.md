@@ -20,15 +20,14 @@ docker run \
 ## Running
 
 ```bash
-docker run -v /go/ldap:/var/lib/ldap \
-			-e LDAP_ORGANISATION="AppUnite Sp. z o.o." \
-			-e LDAP_DOMAIN="appunite.com" \
-			-e LDAP_DC="dc=appunite,dc=com" \
-			--volumes-from go-cd-data \
-			-p 127.0.0.1:8153:8153  \
-			-p 127.0.0.1:8154:8154 -d  \
-			--name go-ci \
-			appunite/go-cd:14.4.0
+docker run -e LDAP_ORGANISATION="AppUnite Sp. z o.o." \
+		-e LDAP_DOMAIN="appunite.com" \
+		-e LDAP_DC="dc=appunite,dc=com" \
+		--volumes-from go-cd-data \
+		-p 127.0.0.1:8153:8153 \
+		-p 127.0.0.1:8154:8154 \
+		-d --name go-cd \
+		appunite/go-cd:14.4.0
 ```			
 
 ### Logging in
@@ -41,13 +40,7 @@ Password: password
 ## TTY
 
 ```bash
-docker run \
-			-e LDAP_ORGANISATION="AppUnite Sp. z o.o." \
-			-e LDAP_DOMAIN="appunite.com" \
-			-e LDAP_DC="dc=appunite,dc=com" \
-			--volumes-from go-cd-data \
-			--tty -i \
-			appunite/go-cd:14.4.0  /bin/bash
+docker run -e LDAP_ORGANISATION="AppUnite Sp. z o.o." -e LDAP_DOMAIN="appunite.com" -e LDAP_DC="dc=appunite,dc=com" --volumes-from go-cd-data  --tty -i  appunite/go-cd:14.4.0  /bin/bash
 ```
 
 ## Nginx proxy
