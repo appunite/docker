@@ -9,7 +9,7 @@ docker build --tag appunite/go-cd-agent:latest .
 ## Running
 
 ```bash
-docker run -e GO_SERVER=ci.appunite.net -d --name go-cd-agent appunite/go-cd-agent:latest 
+docker run -e GO_SERVER=ci.appunite.net -e AGENT_KEY=xxx -e AGENT_RESOURCES=test -e AGENT_ENV=rails -d --name go-cd-agent -i --tty appunite/go-cd-agent:latest /bin/bash 
 ```
 
 ## TTY

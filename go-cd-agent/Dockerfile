@@ -7,4 +7,6 @@ RUN wget -O /tmp/go-agent.deb http://download.go.cd/gocd-deb/go-agent-14.4.0-135
 
 RUN echo "DAEMON=n" > /etc/default/go-agent
 
-CMD rm /usr/share/go-agent/.agent-bootstrapper.running; /usr/share/go-agent/agent.sh
+ADD image /
+
+CMD rm /usr/share/go-agent/.agent-bootstrapper.running; sh /opt/go/start.sh
