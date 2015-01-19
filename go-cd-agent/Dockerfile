@@ -7,4 +7,5 @@ RUN wget -O /tmp/go-agent.deb http://download.go.cd/gocd-deb/go-agent-14.4.0-135
 
 RUN echo "DAEMON=n" > /etc/default/go-agent
 
+ENTRYPOINT rm /var/log/go-agent/go-agent-bootstrapper.log
 CMD /usr/share/go-agent/agent.sh

@@ -3,13 +3,13 @@
 ## Building
 
 ```bash
-docker build --tag appunite/go-cd-agent:14.4.0 .
+docker build --tag appunite/go-cd-agent:latest .
 ```
 
 ## Running
 
 ```bash
-docker run -e GO_SERVER=ci.appunite.net -e --name go-cd-agent appunite/go-cd-agent:14.4.0 
+docker run -e GO_SERVER=ci.appunite.net -e --name go-cd-agent appunite/go-cd-agent:latest 
 ```
 
 ## TTY
