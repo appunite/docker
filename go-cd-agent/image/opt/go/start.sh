@@ -1,3 +1,4 @@
+mkdir /usr/share/go-agent/config
 
   cat<<EOF > /usr/share/go-agent/config/autoregister.properties
 agent.auto.register.key=$AGENT_KEY
