@@ -1,0 +1,20 @@
+{{range $dir := lsdir "/services/web"}}
+upstream {{base $dir}} {
+    {{$custdir := printf "/services/web/%s/servers/*" $dir}}
+    {{range gets $custdir}}
+    server {{$data := json .Value}}{{$data.ip}}:{{$data.port}};
+    {{end}}
+}
+
+server {
+    {{$servernamedir := printf "/services/web/%s/root" $dir}}
+    server_name {{getv $servernamedir}};
+    location / {
+        proxy_pass http://{{base $dir}};
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+{{end}}
