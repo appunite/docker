@@ -13,6 +13,11 @@ COPY templates /etc/confd/templates
 
 COPY scripts/ /usr/local/bin
 
+# Setup nginx
+RUN rm /etc/nginx/conf.d/*
+COPY nginx /etc/nginx
+
+
 EXPOSE 80
 EXPOSE 443
 

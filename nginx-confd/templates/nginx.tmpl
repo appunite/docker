@@ -1,13 +1,13 @@
-{{range $dir := lsdir "/services/web"}}
+{{range $dir := lsdir "/services/nginx"}}
 upstream {{base $dir}} {
-    {{$custdir := printf "/services/web/%s/servers/*" $dir}}
+    {{$custdir := printf "/services/nginx/%s/servers/*" $dir}}
     {{range gets $custdir}}
     server {{$data := json .Value}}{{$data.ip}}:{{$data.port}};
     {{end}}
 }
 
 server {
-    {{$servernamedir := printf "/services/web/%s/root" $dir}}
+    {{$servernamedir := printf "/services/nginx/%s/root" $dir}}
     server_name {{getv $servernamedir}};
     location / {
         proxy_pass http://{{base $dir}};

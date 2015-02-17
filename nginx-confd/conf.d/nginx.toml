@@ -5,7 +5,7 @@
 src = "nginx.tmpl"
 
 # The location to place the rendered configuration file
-dest = "/etc/nginx/sites-enabled/app.conf"
+dest = "/etc/nginx/conf.d/app.conf"
 
 # The etcd keys or directory to watch.  This is where the information to fill in
 # the template will come from.

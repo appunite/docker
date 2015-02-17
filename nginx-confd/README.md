@@ -25,17 +25,17 @@ docker push jacekmarchwicki/nginx-confd
 Configure your `etcdctl`:
 
 ```bash
-etcdctl mkdir /services/web/www/
-etcdctl mkdir /services/web/www/servers/
-etcdctl set /services/web/www/root 'www.example.com'
-etcdctl set /services/web/www/servers/1 '{"ip": "10.0.0.3", "port": "80"}'
-etcdctl set /services/web/www/servers/2 '{"ip": "10.0.0.4", "port": "80"}'
+etcdctl mkdir /services/nginx/www/
+etcdctl mkdir /services/nginx/www/servers/
+etcdctl set /services/nginx/www/root 'www.example.com'
+etcdctl set /services/nginx/www/servers/1 '{"ip": "10.0.0.3", "port": "80"}'
+etcdctl set /services/nginx/www/servers/2 '{"ip": "10.0.0.4", "port": "80"}'
 
-etcdctl mkdir /services/web/test/
-etcdctl mkdir /services/web/test/servers/
-etcdctl set /services/web/test/root 'test.example.com'
-etcdctl set /services/web/test/servers/1 '{"ip": "10.0.0.1", "port": "80"}'
-etcdctl set /services/web/test/servers/2 '{"ip": "10.0.0.2", "port": "80"}'
+etcdctl mkdir /services/nginx/test/
+etcdctl mkdir /services/nginx/test/servers/
+etcdctl set /services/nginx/test/root 'test.example.com'
+etcdctl set /services/nginx/test/servers/1 '{"ip": "10.0.0.1", "port": "80"}'
+etcdctl set /services/nginx/test/servers/2 '{"ip": "10.0.0.2", "port": "80"}'
 ```
 
 Change directory to your project directory, than run:
