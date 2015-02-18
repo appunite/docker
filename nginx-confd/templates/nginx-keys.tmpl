@@ -1,0 +1,10 @@
+#!/bin/bash
+{{range $dir := lsdir "/services/nginx"}}
+
+{{$sslcrt := printf "/services/nginx/%s/ssl-crt" $dir}}
+echo "{{getv $sslcrt}}" > /etc/nginx/keys/{{base $dir}}.crt
+
+{{$sslkey := printf "/services/nginx/%s/ssl-key" $dir}}
+echo "{{getv $sslkey}}" > /etc/nginx/keys/{{base $dir}}.key
+
+{{end}}
