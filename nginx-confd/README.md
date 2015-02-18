@@ -43,8 +43,8 @@ Configure your `etcdctl`:
 etcdctl mkdir /services/nginx/www/
 etcdctl mkdir /services/nginx/www/servers/
 etcdctl set /services/nginx/www/root 'www.example.com'
-etcdctl set /services/nginx/www/ssl-crt "$(cat www-server.crt)"
-etcdctl set /services/nginx/www/ssl-key "$(cat www-server.key)"
+cat www-server.crt | etcdctl set /services/nginx/www/ssl-crt
+cat www-server.key | etcdctl set /services/nginx/www/ssl-key
 etcdctl set /services/nginx/www/ssl-ip "99.99.99.99"
 etcdctl set /services/nginx/www/servers/1 '{"ip": "10.0.0.3", "port": "80"}'
 etcdctl set /services/nginx/www/servers/2 '{"ip": "10.0.0.4", "port": "80"}'
@@ -52,8 +52,8 @@ etcdctl set /services/nginx/www/servers/2 '{"ip": "10.0.0.4", "port": "80"}'
 etcdctl mkdir /services/nginx/test/
 etcdctl mkdir /services/nginx/test/servers/
 etcdctl set /services/nginx/test/root 'test.example.com'
-etcdctl set /services/nginx/test/ssl-crt "$(cat test-server.crt)"
-etcdctl set /services/nginx/test/ssl-key "$(cat test-server.key)"
+cat test-server.crt | etcdctl set /services/nginx/test/ssl-crt
+cat test-server.key | etcdctl set /services/nginx/test/ssl-key
 etcdctl set /services/nginx/test/ssl-ip "99.99.99.99"
 etcdctl set /services/nginx/test/servers/1 '{"ip": "10.0.0.1", "port": "80"}'
 etcdctl set /services/nginx/test/servers/2 '{"ip": "10.0.0.2", "port": "80"}'
