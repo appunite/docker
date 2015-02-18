@@ -7,7 +7,6 @@ upstream {{base $dir}} {
 }
 
 {{$servernamedir := printf "/services/nginx/%s/root" $dir}}
-{{$sslipdir := printf "/services/nginx/%s/ssl-ip" $dir}}
 
 server {
 	listen 80;
@@ -19,7 +18,7 @@ server {
 }
 
 server {
-	listen {{getv $sslipdir}}:443;
+	listen 443;
 	server_name {{getv $servernamedir}};
 
 	ssl on;
