@@ -6,7 +6,7 @@ For examples please look at [How To Use Confd and Etcd to Dynamically Reconfigur
 ## Build image
 
 ```bash
-docker build -t jacekmarchwicki/nginx-confd .
+docker build -t appunite/nginx-confd .
 ```
 
 If building fail you can debug via where `1b372b1f76f2` is partial build
@@ -18,7 +18,7 @@ docker run --tty --interactive --rm 1b372b1f76f2 /bin/bash
 ## Push build version to repository
 
 ```bash
-docker push jacekmarchwicki/nginx-confd
+docker push appunite/nginx-confd
 ```
 
 ## Usage
@@ -67,7 +67,7 @@ docker run \
   --name=nginx \
   --publish 80:80 \
   --publish 443:443 \
-  jacekmarchwicki/nginx-confd
+  appunite/nginx-confd
 ```
 
 ## How you doin
