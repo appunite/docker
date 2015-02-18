@@ -1,0 +1,36 @@
+{{range $dir := lsdir "/services/nginx"}}
+upstream {{base $dir}} {
+    {{$custdir := printf "/services/nginx/%s/servers/*" $dir}}
+    {{range gets $custdir}}
+    server {{$data := json .Value}}{{$data.ip}}:{{$data.port}};
+    {{end}}
+}
+
+{{$servernamedir := printf "/services/nginx/%s/root" $dir}}
+
+server {
+	listen 80;
+
+	server_name {{getv $servernamedir}};
+	location / {
+		return 301 https://{{getv $servernamedir}}/;
+	}
+}
+
+server {
+	listen 443;
+	server_name {{getv $servernamedir}};
+
+	ssl on;
+	ssl_certificate /etc/nginx/keys/{{base $dir}}.crt;
+	ssl_certificate_key /etc/nginx/keys/{{base $dir}}.key;
+
+	location / {
+		proxy_pass http://{{base $dir}};
+		proxy_redirect off;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
+}
+{{end}}
