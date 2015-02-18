@@ -63,6 +63,9 @@ Change directory to your project directory, than run:
 
 ```bash
 docker run \
+  --rm \
+  --tty \
+  --interactive \
   --name=nginx \
   --publish 80:80 \
   --publish 443:443 \

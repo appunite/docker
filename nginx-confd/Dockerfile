@@ -11,10 +11,12 @@ RUN mkdir -p /etc/confd/{conf.d,templates}
 COPY conf.d /etc/confd/conf.d
 COPY templates /etc/confd/templates
 
+# startup scripts
 COPY scripts/ /usr/local/bin
 
 # Setup nginx
 RUN rm /etc/nginx/conf.d/*
+RUN mkdir /etc/nginx/keys
 COPY nginx /etc/nginx
 
 
