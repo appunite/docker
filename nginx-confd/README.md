@@ -48,3 +48,11 @@ docker run \
   jacekmarchwicki/nginx-confd
 ```
 
+## How you doin
+
+Directories
+* `nginx` nginx configuration 
+* `conf.d` confd [templete resources](https://github.com/kelseyhightower/confd/blob/master/docs/template-resources.md)
+* `templates` confd [templates](https://github.com/kelseyhightower/confd/blob/master/docs/templates.md)
+* `scripts` startup scripts
+
