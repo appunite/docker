@@ -2,9 +2,9 @@ FROM nginx
 
 MAINTAINER Jacek Marchwicki "jacek.marchwicki@gmail.com"
 
-RUN apt-get update && apt-get install -y --force-yes wget && apt-get clean
+RUN apt-get update && apt-get install -y --force-yes wget apache2-utils && apt-get clean
 # Install confd
-RUN wget --no-check-certificate --output-document=/usr/local/bin/confd https://github.com/kelseyhightower/confd/releases/download/v0.6.3/confd-0.6.3-linux-amd64 && chmod +x /usr/local/bin/confd
+RUN wget --no-check-certificate --output-document=/usr/local/bin/confd https://github.com/kelseyhightower/confd/releases/download/v0.7.1/confd-0.7.1-linux-amd64 && chmod +x /usr/local/bin/confd
 
 # Prepare config files
 RUN mkdir -p /etc/confd/{conf.d,templates}

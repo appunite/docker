@@ -78,3 +78,11 @@ Directories
 * `templates` confd [templates](https://github.com/kelseyhightower/confd/blob/master/docs/templates.md)
 * `scripts` startup scripts
 
+## For restricted basic auth access use
+
+```bash
+etcdctl set /services/nginx/test/restrict true
+etcdctl mkdir /services/nginx/test/restrict-users
+etcdctl set /services/nginx/test/restrict-users/root some_password
+```
+
