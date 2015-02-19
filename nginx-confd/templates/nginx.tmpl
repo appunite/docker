@@ -31,6 +31,12 @@ server {
 		proxy_set_header Host $host;
 		proxy_set_header X-Real-IP $remote_addr;
 		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		{{$restrict := printf "/services/nginx/%s/restrict" $dir}}
+		{{if exists $restrict}}
+  		  {{$htpassword := printf "/etc/nginx/keys/%s.htpasswd" $filename }}
+		  auth_basic "Restricted";
+		  auth_basic_user_file {{$htpassword}};
+		{{endif}}
 	}
 }
 {{end}}
