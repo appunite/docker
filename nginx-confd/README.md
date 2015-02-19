@@ -81,7 +81,8 @@ Directories
 ## For restricted basic auth access use
 
 ```bash
-etcdctl mkdir /services/nginx/test/restrict
-etcdctl set /services/nginx/test/restrict/root some_password
+etcdctl set /services/nginx/test/restrict true
+etcdctl mkdir /services/nginx/test/restrict-users
+etcdctl set /services/nginx/test/restrict-users/root some_password
 ```
 

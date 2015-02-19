@@ -1,12 +1,14 @@
 {{range $dir := lsdir "/services/nginx"}}
-upstream {{base $dir}} {
-    {{$custdir := printf "/services/nginx/%s/servers/*" $dir}}
+
+{{$filename := base $dir}}
+upstream {{$filename}} {
+    {{$custdir := printf "/services/nginx/%s/servers/*" $filename}}
     {{range gets $custdir}}
     server {{$data := json .Value}}{{$data.ip}}:{{$data.port}};
     {{end}}
 }
 
-{{$servernamedir := printf "/services/nginx/%s/root" $dir}}
+{{$servernamedir := printf "/services/nginx/%s/root" $filename}}
 
 server {
 	listen 80;
@@ -22,21 +24,21 @@ server {
 	server_name {{getv $servernamedir}};
 
 	ssl on;
-	ssl_certificate /etc/nginx/keys/{{base $dir}}.crt;
-	ssl_certificate_key /etc/nginx/keys/{{base $dir}}.key;
+	ssl_certificate /etc/nginx/keys/{{$filename}}.crt;
+	ssl_certificate_key /etc/nginx/keys/{{$filename}}.key;
 
 	location / {
-		proxy_pass http://{{base $dir}};
+		proxy_pass http://{{$filename}};
 		proxy_redirect off;
 		proxy_set_header Host $host;
 		proxy_set_header X-Real-IP $remote_addr;
 		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		{{$restrict := printf "/services/nginx/%s/restrict" $dir}}
+		{{$restrict := printf "/services/nginx/%s/restrict" $filename}}
 		{{if exists $restrict}}
   		  {{$htpassword := printf "/etc/nginx/keys/%s.htpasswd" $filename }}
 		  auth_basic "Restricted";
 		  auth_basic_user_file {{$htpassword}};
-		{{endif}}
+		{{end}}
 	}
 }
 {{end}}
