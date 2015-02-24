@@ -139,3 +139,16 @@ chmod u+x script.sh  || exit 1
 
 docker run --interactive --volume=$(pwd):/opt/workspace --workdir=/opt/workspace --rm jacekmarchwicki/android-test "/opt/workspace/script.sh" || exit 1
 ```
+
+## Running slave
+docker run \
+  --tty \
+  --interactive \
+  --publish 21:21 \
+  --privileged \
+  --rm \
+  --env ROOT_PASSWORD=some-password \
+  jacekmarchwicki/jenkins \
+  wrapdocker slave.sh
+
+
