@@ -20,7 +20,7 @@ server {
 }
 
 server {
-	listen 443;
+	listen 443 ssl spdy;
 	server_name {{getv $servernamedir}};
 
 	ssl on;
