@@ -4,6 +4,7 @@
 * [Jenkins](jenkins/README.md)
 * [Go CD](go-cd/README.md)
 * [Go CD Agent](go-cd-agent/README.md)
+* [Nginx](nginx/README.md)
 
 ## License
 
