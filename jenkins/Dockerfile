@@ -51,6 +51,6 @@ COPY run.sh /usr/local/bin/
 RUN mkdir -p /opt/workspace
 WORKDIR /opt/workspace
 
-EXPOSE 8080 21
+EXPOSE 8080 22
 
 CMD ["/usr/local/bin/wrapdocker", "/usr/local/bin/run.sh"]
