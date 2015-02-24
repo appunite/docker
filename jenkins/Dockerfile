@@ -14,7 +14,8 @@ RUN apt-get update -qq && apt-get install -qqy \
     openssh-client \
     python \
     unzip \
-    python-openssl
+    python-openssl \
+    openssh-server
     
 # Install Docker from Docker Inc. repositories.
 RUN curl -sSL https://get.docker.com/ubuntu/ | sh
@@ -38,6 +39,11 @@ RUN wget --output-document=/opt/jenkins.war http://mirrors.jenkins-ci.org/war/1.
 RUN chmod 644 /opt/jenkins.war
 ENV JENKINS_HOME /jenkins
 VOLUME /jenkins
+
+# Setup slave login
+RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+COPY slave.sh /usr/local/bin/
+ENV ROOT_PASSWORD notasecret
 
 # install run script
 COPY run.sh /usr/local/bin/
