@@ -60,8 +60,7 @@ docker run --volumes-from jenkins-data \
   --interactive \
   --publish 8080:8080 \
   --privileged \
-  --rm jacekmarchwicki/jenkins \
-  run.sh
+  --rm jacekmarchwicki/jenkins
 ```
 
 ### Debug
@@ -111,8 +110,7 @@ docker run --volumes-from jenkins-data2 \
   --publish 8081:8080 \
   --privileged \
   --rm \
-  jacekmarchwicki/jenkins \
-  run.sh
+  jacekmarchwicki/jenkins
 ```
 
 Now your restored jenkins should be visible on port `8081`.
