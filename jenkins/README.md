@@ -3,6 +3,8 @@
 This docker is to build jenkins for git CI with docker integration.
 It is available on Docker Hub https://registry.hub.docker.com/u/jacekmarchwicki/jenkins/ .
 
+This docker is based on [dind](https://github.com/jpetazzo/dind), big thanks to its authors.
+
 ## Build image
 
 ```bash
