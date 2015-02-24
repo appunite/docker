@@ -15,7 +15,7 @@ server {
 
 	server_name {{getv $servernamedir}};
 	location / {
-		return 301 https://{{getv $servernamedir}}/;
+		return 301 https://$host$request_uri$is_args$args;
 	}
 }
 
