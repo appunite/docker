@@ -3,6 +3,8 @@
 This docker is to build jenkins for git CI with docker integration.
 It is available on Docker Hub https://registry.hub.docker.com/u/jacekmarchwicki/jenkins/ .
 
+This docker is based on [dind](https://github.com/jpetazzo/dind), big thanks to its authors.
+
 ## Build image
 
 ```bash
@@ -58,8 +60,7 @@ docker run --volumes-from jenkins-data \
   --interactive \
   --publish 8080:8080 \
   --privileged \
-  --rm jacekmarchwicki/jenkins \
-  run.sh
+  --rm jacekmarchwicki/jenkins
 ```
 
 ### Debug
@@ -109,8 +110,7 @@ docker run --volumes-from jenkins-data2 \
   --publish 8081:8080 \
   --privileged \
   --rm \
-  jacekmarchwicki/jenkins \
-  run.sh
+  jacekmarchwicki/jenkins
 ```
 
 Now your restored jenkins should be visible on port `8081`.
@@ -139,3 +139,16 @@ chmod u+x script.sh  || exit 1
 
 docker run --interactive --volume=$(pwd):/opt/workspace --workdir=/opt/workspace --rm jacekmarchwicki/android-test "/opt/workspace/script.sh" || exit 1
 ```
+
+## Running slave
+docker run \
+  --tty \
+  --interactive \
+  --publish 21:21 \
+  --privileged \
+  --rm \
+  --env ROOT_PASSWORD=some-password \
+  jacekmarchwicki/jenkins \
+  wrapdocker slave.sh
+
+
