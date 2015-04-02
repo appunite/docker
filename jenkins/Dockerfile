@@ -35,7 +35,7 @@ ENV CLOUDSDK_CONFIG /jenkins/gcloud
 ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
 
 # Install jenkins
-RUN wget --output-document=/opt/jenkins.war http://mirrors.jenkins-ci.org/war/1.599/jenkins.war
+RUN wget --output-document=/opt/jenkins.war http://mirrors.jenkins-ci.org/war/1.607/jenkins.war
 RUN chmod 644 /opt/jenkins.war
 ENV JENKINS_HOME /jenkins
 VOLUME /jenkins
