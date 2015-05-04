@@ -1,14 +1,23 @@
 {{range $dir := lsdir "/services/nginx"}}
 
 {{$filename := base $dir}}
+{{$custdir := printf "/services/nginx/%s/servers/" $filename}}
+{{if ne (len (ls $custdir)) 0}}
 upstream {{$filename}} {
-    {{$custdir := printf "/services/nginx/%s/servers/" $filename}}
-    {{range ls $custdir}}
-       {{$key := printf "/services/nginx/%s/servers/%s" $filename .}}
-			 {{$value := getv $key}}
-			 server {{$data := json $value}}{{$data.ip}}:{{$data.port}};
-    {{end}}
+	{{$custdir := printf "/services/nginx/%s/servers/" $filename}}
+	{{range ls $custdir}}
+		{{$key := printf "/services/nginx/%s/servers/%s" $filename .}}
+		{{$value := getv $key}}
+		server {{$data := json $value}}{{$data.ip}}:{{$data.port}};
+	{{end}}
 }
+{{else}}
+upstream {{$filename}} {
+	server localhost;
+}
+{{end}}
+
+
 {{$servernamedir := printf "/services/nginx/%s/root" $filename}}
 
 server {
@@ -23,9 +32,11 @@ server {
 server {
 	listen 443 ssl spdy;
 	server_name {{getv $servernamedir}};
-	
+
 	client_max_body_size 400m;
 
+{{$sslcrt := printf "/services/nginx/%s/ssl-crt" $filename}}
+{{if exists $sslcrt}}
 	ssl on;
 	ssl_certificate /etc/nginx/keys/{{$filename}}.crt;
 	ssl_certificate_key /etc/nginx/keys/{{$filename}}.key;
@@ -47,7 +58,7 @@ server {
 	ssl_stapling_verify on;
 	resolver 8.8.4.4 8.8.8.8 valid=300s;
 	resolver_timeout 10s;
-
+{{end}}
 	location / {
 		proxy_pass http://{{$filename}};
 		proxy_redirect off;
