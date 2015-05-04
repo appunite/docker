@@ -2,12 +2,13 @@
 
 {{$filename := base $dir}}
 upstream {{$filename}} {
-    {{$custdir := printf "/services/nginx/%s/servers/*" $filename}}
-    {{range gets $custdir}}
-    server {{$data := json .Value}}{{$data.ip}}:{{$data.port}};
+    {{$custdir := printf "/services/nginx/%s/servers/" $filename}}
+    {{range ls $custdir}}
+       {{$key := printf "/services/nginx/%s/servers/%s" $filename .}}
+			 {{$value := getv $key}}
+			 server {{$data := json $value}}{{$data.ip}}:{{$data.port}};
     {{end}}
 }
-
 {{$servernamedir := printf "/services/nginx/%s/root" $filename}}
 
 server {

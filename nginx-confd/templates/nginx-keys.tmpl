@@ -5,10 +5,12 @@
 # {{$filename}}
 
 {{$sslcrt := printf "/services/nginx/%s/ssl-crt" $filename}}
+{{if exists $sslcrt}}
 echo "{{getv $sslcrt}}" > /etc/nginx/keys/{{$filename}}.crt
 
 {{$sslkey := printf "/services/nginx/%s/ssl-key" $filename}}
 echo "{{getv $sslkey}}" > /etc/nginx/keys/{{$filename}}.key
+{{end}}
 
 {{$restrict := printf "/services/nginx/%s/restrict" $filename}}
 {{if exists $restrict}}
