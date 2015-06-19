@@ -5,9 +5,9 @@ It is available on Docker Hub https://registry.hub.docker.com/u/jacekmarchwicki/
 
 Contains:
 
-* Android SDK: r24.0.2
-* Build tools: 21.1.2
-* Android API: 21
+* Android SDK: r24.3.3
+* Build tools: 21, 21.0.1, 21.0.2, 21.1, 21.1.1, 21.1.2, 22, 22.0.1
+* Android API: 21, 22
 * Support maven repository
 * Google maven repository
 * Arm emulator: v21
