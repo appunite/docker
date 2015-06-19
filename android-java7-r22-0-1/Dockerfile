@@ -1,6 +1,11 @@
-FROM dockerfile/java:oracle-java7
+FROM ubuntu:14.04
 
 MAINTAINER Jacek Marchwicki "jacek.marchwicki@gmail.com"
+
+# Install java7
+RUN apt-get install -y software-properties-common && add-apt-repository -y ppa:webupd8team/java && apt-get update
+RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+RUN apt-get install -y oracle-java7-installer
 
 # Install Deps
 RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --force-yes expect git wget libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 python
