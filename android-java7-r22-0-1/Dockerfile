@@ -3,12 +3,13 @@ FROM ubuntu:14.04
 MAINTAINER Jacek Marchwicki "jacek.marchwicki@gmail.com"
 
 # Install java7
-RUN apt-get install -y software-properties-common && add-apt-repository -y ppa:webupd8team/java && apt-get update
+RUN apt-get update && apt-get install -y software-properties-common && apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN add-apt-repository -y ppa:webupd8team/java
 RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-RUN apt-get install -y oracle-java7-installer
+RUN apt-get update && apt-get install -y oracle-java7-installer && apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Deps
-RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --force-yes expect git wget libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 python curl
+RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --force-yes expect git wget libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 python curl && apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Android SDK
 RUN cd /opt && wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r24.1.2-linux.tgz && tar xzf android-sdk.tgz && rm -f android-sdk.tgz && chown -R root.root android-sdk-linux
