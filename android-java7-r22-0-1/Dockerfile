@@ -25,7 +25,8 @@ RUN cd /opt && wget --output-document=android-sdk.tgz --quiet http://dl.google.c
   rm -f android-sdk.tgz && \
   chown -R root.root android-sdk-linux && \
   /opt/tools/android-accept-licenses.sh "android-sdk-linux/tools/android update sdk --all --no-ui --filter platform-tools,tools" && \
-  /opt/tools/android-accept-licenses.sh "android-sdk-linux/tools/android update sdk --all --no-ui --filter platform-tools,tools,build-tools-22.0.1,android-22,addon-google_apis_x86-google-22,extra-android-support,extra-android-m2repository,extra-google-m2repository,sys-img-armeabi-v7a-android-22"
+  (unzip ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}; exit 0;) && \
+  /opt/tools/android-accept-licenses.sh "android-sdk-linux/tools/android update sdk --all --no-ui --filter build-tools-22.0.1,android-22,addon-google_apis_x86-google-22,extra-android-support,extra-android-m2repository,extra-google-m2repository,sys-img-armeabi-v7a-android-22"
 
 # Setup environment
 ENV ANDROID_HOME /opt/android-sdk-linux
