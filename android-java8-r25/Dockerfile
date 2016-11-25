@@ -2,16 +2,6 @@ FROM ubuntu:14.04
 
 MAINTAINER Jacek Marchwicki "jacek.marchwicki@gmail.com"
 
-# Install java7
-RUN apt-get update && \
-  apt-get install -y software-properties-common && \
-  add-apt-repository -y ppa:webupd8team/java && \
-  (echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections) && \
-  apt-get update && \
-  apt-get install -y oracle-java7-installer && \
-  apt-get clean && \
-  rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # Install java8
 RUN apt-get update && \
   apt-get install -y software-properties-common && \
