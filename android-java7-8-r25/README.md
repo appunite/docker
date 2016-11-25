@@ -1,11 +1,12 @@
-# android-java8
+# android java7 and java8
 
-This docker is to build Android Gradle project with Java 8.
+This docker is to build Android Gradle project with Java 8 and Java 8.
 It is available on Docker Hub https://registry.hub.docker.com/u/jacekmarchwicki/android/ .
 
-Contains:
+## Setting default java:
+* java8 (default) `update-java-alternatives --set java-8-oracle`, directory: `/usr/lib/jvm/java-8-oracle`
+* java7 `update-java-alternatives --set java-7-oracle`, directory: `/usr/lib/jvm/java-7-oracle`
 
-* Android SDK: r24.4.1
 
 ## Build image
 
