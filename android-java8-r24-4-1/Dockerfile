@@ -20,7 +20,7 @@ COPY tools /opt/tools
 ENV PATH ${PATH}:/opt/tools
 
 # Install Android SDK
-RUN cd /opt && wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r24.3.3-linux.tgz && \
+RUN cd /opt && wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && \
   tar xzf android-sdk.tgz && \
   rm -f android-sdk.tgz && \
   chown -R root.root android-sdk-linux && \
