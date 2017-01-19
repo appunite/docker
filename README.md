@@ -1,8 +1,6 @@
 #Docker files
 
-* [Android with Java 7](android-java7/README.md)
-* [Android r22 with Java 7](android-java7-r22/README.md)
-* [Android r24.4.1 with Java 7](android-java7-r24-4-1/README.md)
+* [Building Android](java7-8/README.md)
 * [Jenkins](jenkins/README.md)
 * [Go CD](go-cd/README.md)
 * [Go CD Agent](go-cd-agent/README.md)
