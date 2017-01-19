@@ -1,4 +1,5 @@
 # android-java8
+DEPRECATED use [java7-8](../java7-8/README.md)
 
 This docker is to build Android Gradle project with Java 8.
 It is available on Docker Hub https://registry.hub.docker.com/u/jacekmarchwicki/android/ .
