@@ -21,9 +21,7 @@ Then inside docker
 
 ```bash
 # install and setup android sdk
-wget --output-document=tools.zip --quiet https://dl.google.com/android/repository/tools_r25.2.3-linux.zip && unzip tools.zip -d /opt/android-sdk-linux && rm -f tools.zip && chown -R root.root /opt/android-sdk-linux
 export ANDROID_HOME=/opt/android-sdk-linux
-export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 # accept licenses
 mkdir -p "/opt/android-sdk-linux/licenses"
 echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "/opt/android-sdk-linux/licenses/android-sdk-license"
