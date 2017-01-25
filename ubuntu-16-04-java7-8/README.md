@@ -36,19 +36,12 @@ echo -e "\nd975f751698a77b662f1254ddbeed3901e976f5a" > "/opt/android-sdk-linux/l
 ## Build image
 
 ```bash
-docker build -t jacekmarchwicki/android:ubuntu-16-06-java7-8 .
+docker build -t jacekmarchwicki/android:ubuntu-16-04-java7-8 .
 ```
 
 If building fail you can debug via where `1b372b1f76f2` is partial build
 
 ```bash
 docker run --tty --interactive --rm 1b372b1f76f2 /bin/bash
-```
-
-## Usage
-Change directory to your project directory, than run:
-
-```bash
-docker run --tty --interactive --volume=$(pwd):/opt/workspace --workdir=/opt/workspace --rm jacekmarchwicki/android:java8  /bin/sh -c "./gradlew build"
 ```
 

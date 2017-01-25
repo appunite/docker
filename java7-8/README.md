@@ -45,10 +45,3 @@ If building fail you can debug via where `1b372b1f76f2` is partial build
 docker run --tty --interactive --rm 1b372b1f76f2 /bin/bash
 ```
 
-## Usage
-Change directory to your project directory, than run:
-
-```bash
-docker run --tty --interactive --volume=$(pwd):/opt/workspace --workdir=/opt/workspace --rm jacekmarchwicki/android:java8  /bin/sh -c "./gradlew build"
-```
-
