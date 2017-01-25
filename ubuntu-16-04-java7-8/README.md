@@ -5,7 +5,7 @@ It is available on Docker Hub https://registry.hub.docker.com/u/jacekmarchwicki/
 
 Other images with android tools are deprecated
 
-Ubuntu: 14.04
+Ubuntu: 16.04
 
 ## Setting default java:
 * java8 (default) `update-java-alternatives --set java-8-oracle`, directory: `/usr/lib/jvm/java-8-oracle`, env: `$JAVA8_HOME` and `$JAVA_HOME`
