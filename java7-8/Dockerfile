@@ -11,7 +11,7 @@ RUN apt-get update && \
   apt-get install -y oracle-java7-installer && \
   apt-get clean && \
   rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
-ENV JAVA7_HOME /usr/lib/jvm/java-8-oracle
+ENV JAVA7_HOME /usr/lib/jvm/java-7-oracle
 
 # Install java8
 RUN apt-get update && \
