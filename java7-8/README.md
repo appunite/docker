@@ -39,6 +39,7 @@ If you want build with NDK:
 export GRADLE_USER_HOME="$(pwd)/.gradle"
 export ANDROID_HOME="$(pwd)/.android"
 export ANDROID_NDK_HOME="${ANDROID_HOME}/ndk-bundle"
+mkdir -p "${ANDROID_HOME}"
 if [ ! -f ${ANDROID_HOME}/ndk.zip ]; then wget -O ${ANDROID_HOME}/ndk.zip --quiet https://dl.google.com/android/repository/android-ndk-r13b-linux-x86_64.zip; fi
 if [ ! -d ${ANDROID_NDK_HOME} ]; then unzip ${ANDROID_HOME}/ndk.zip -d /tmp/ > /dev/null; mv /tmp/* ${ANDROID_NDK_HOME}; ls ${ANDROID_NDK_HOME}/; fi
 mkdir -p "${ANDROID_HOME}/licenses"
