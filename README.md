@@ -1,7 +1,8 @@
 # Docker files
 
-* [Building Android ubuntu 16.04 (with NDK)](ubuntu-16-04-java7-8/README.md)
-* [Building Android ubuntu 14.04 (with NDK)](java7-8/README.md)
+* [Building Android ubuntu 16.04 (with NDK) java(7,8,9)](ubuntu-16-04-java7-8-9/README.md)
+* [Building Android ubuntu 16.04 (with NDK) java(7,8)](ubuntu-16-04-java7-8/README.md)
+* [Building Android ubuntu 14.04 (with NDK) java(7,8)](java7-8/README.md)
 
 ## License
 
