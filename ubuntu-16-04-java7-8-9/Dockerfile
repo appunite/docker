@@ -23,7 +23,6 @@ RUN apt-get update && \
   apt-get clean && \
   rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ENV JAVA8_HOME /usr/lib/jvm/java-8-oracle
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Install java9
 RUN apt-get update && \
